@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 15s # по умолчанию сбор данных каждые 15 секунд
+scrape_configs:
+  - job_name: 'prometheus' # задача по сбору данных работы prometheus
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # добавляем новую задачу для prometheus
+  - job_name: 'prometheus_node'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9100'] # в данном случае подразумевается, что prometheus и экспортер установлены на одном сервере
